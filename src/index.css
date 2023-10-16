@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.container {
+  margin: 20px;
+}
+
+.renew-button {
+  background-color: #001d66;
+}
+
+.view-button {
+  background-color: #722ed1;
+}
