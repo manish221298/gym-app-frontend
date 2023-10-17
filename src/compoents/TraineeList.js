@@ -67,6 +67,7 @@ const TraineeList = () => {
       key: "pic",
       render: (pic) => (
         <img
+          alt="images"
           src={`http://localhost:4002/Images/${pic}`}
           style={{ maxWidth: "50px", maxHeight: "50px", borderRadius: "15px" }}
         />
