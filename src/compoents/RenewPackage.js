@@ -1,11 +1,14 @@
-import { Form, Input, Button, Select } from "antd";
+import { Form, Button, Select, DatePicker } from "antd";
 import { useState } from "react";
 import Trainee from "../services/trainee";
 
 const RenewPackage = ({ traineeId }) => {
   const [selectPackage, setSelectPackage] = useState(1);
+  const [date, setDate] = useState();
 
-  console.log(selectPackage);
+  const handleDate = (date, dateString) => {
+    setDate(dateString);
+  };
 
   const option = [
     {
@@ -30,6 +33,7 @@ const RenewPackage = ({ traineeId }) => {
     e.preventDefault();
     const formData = {
       selectPackage: selectPackage,
+      startDate: date,
     };
 
     Trainee.renewPackage(traineeId, formData)
@@ -53,6 +57,16 @@ const RenewPackage = ({ traineeId }) => {
             size="large"
             onChange={(e) => setSelectPackage(e)}
             options={option}
+          />
+        </Form.Item>
+
+        <Form.Item hasFeedback label="Start Date">
+          <DatePicker
+            style={{
+              width: 429,
+            }}
+            size="large"
+            onChange={handleDate}
           />
         </Form.Item>
 

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Select, DatePicker } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Button } from "antd";
+import Authenticate from "../services/authenticate";
 
 const Login = () => {
   const [password, setPassword] = useState("");
@@ -7,11 +8,30 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    localStorage.setItem("authToken", 1234567890);
+    const formData = {
+      email: email,
+      password: password,
+    };
+
+    Authenticate.loginUser(formData)
+      .then((res) => {
+        console.log("user login", res);
+        localStorage.setItem("authToken", res.token);
+      })
+      .catch((err) => {
+        console.log("login error", err);
+      });
   };
 
   return (
     <div>
+      <div className="image">
+        <img
+          style={{ height: "100px", width: "100px" }}
+          src="https://cdn1.iconfinder.com/data/icons/basic-22/512/1041_boy_c-512.png"
+          alt="img"
+        />
+      </div>
       <Form style={{ maxWidth: 600 }} layout="vertical">
         <Form.Item hasFeedback label="Email">
           <Input

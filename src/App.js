@@ -13,7 +13,7 @@ function App() {
       </div>
       <div>
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           {localStorage.getItem("authToken") && (
             <Route path="/traineelist" element={<TraineeList />} />
           )}

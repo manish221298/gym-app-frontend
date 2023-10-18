@@ -23,3 +23,31 @@ code {
 .view-button {
   background-color: #722ed1;
 }
+
+.edit-button {
+  background-color: #5D96E7;
+}
+
+.add-trainee {
+  display: flex;
+  justify-content: end;
+  margin: 1vw 2vw 1vw 0;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  margin: 1vw 0vw 4vw 0;
+}
+
+.ant-modal .ant-modal-content {
+  background-color: rgb(121, 81, 81);
+}
+
+.ant-modal .ant-modal-content {
+  background-color: hwb(35 55% 41%);
+}
+
+.ant-modal-title {
+  background-color: hwb(35 55% 41%);
+}

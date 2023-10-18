@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Select, DatePicker } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Button } from "antd";
+import Authenticate from "../services/authenticate";
 
 const Register = () => {
   const [password, setPassword] = useState("");
@@ -7,11 +8,29 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    localStorage.setItem("authToken", 1234567890);
+    const formData = {
+      email: email,
+      password: password,
+    };
+
+    Authenticate.registerUser(formData)
+      .then((res) => {
+        console.log("user registered", res);
+      })
+      .catch((err) => {
+        console.log("register error", err);
+      });
   };
 
   return (
     <div>
+      <div className="image">
+        <img
+          style={{ height: "100px", width: "100px" }}
+          src="https://cdn3.iconfinder.com/data/icons/essential-rounded/66/Rounded-38-512.png"
+          alt="img"
+        />
+      </div>
       <Form style={{ maxWidth: 600 }} layout="vertical">
         <Form.Item hasFeedback label="Email">
           <Input

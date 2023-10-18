@@ -120,7 +120,10 @@ const TraineeList = () => {
       key: "_id",
       render: (_id) => (
         <span>
-          <Button type="primary">Edit</Button>,
+          <Button className="edit-button" type="primary">
+            Edit
+          </Button>
+          ,
           <Button
             className="renew-button"
             type="primary"
@@ -147,9 +150,11 @@ const TraineeList = () => {
 
   return (
     <div>
-      <Button type="primary" onClick={showModal}>
-        ADD TRAINEE
-      </Button>
+      <div className="add-trainee">
+        <Button type="primary" size="large" onClick={showModal}>
+          ADD TRAINEE
+        </Button>
+      </div>
       <Table dataSource={data} columns={columns} />
       <Modal
         title="ADD TRAINEE"
