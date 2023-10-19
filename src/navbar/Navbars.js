@@ -39,7 +39,7 @@ function Navbars() {
           {" "}
           <Navbar bg="dark" expand="lg" variant="dark">
             <Container>
-              <Navbar.Brand href="/">Gym</Navbar.Brand>
+              <Navbar.Brand href="/">MuscleMax</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
@@ -48,6 +48,7 @@ function Navbars() {
                   </Nav.Item>
                   <Nav.Link href="/">Home</Nav.Link>
                   <Nav.Link href="/traineelist">Trainee</Nav.Link>
+                  <Nav.Link href="/offers">Offers</Nav.Link>
                   <Nav.Link type="primary" onClick={handleLogout}>
                     Logout
                   </Nav.Link>
@@ -61,11 +62,12 @@ function Navbars() {
           {" "}
           <div>
             <Navbar bg="dark" expand="lg" variant="dark">
-              <Navbar.Brand href="/">Gym</Navbar.Brand>
+              <Navbar.Brand href="/">MuscleMax</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
                   <Nav.Link href="/">Home</Nav.Link>
+                  <Nav.Link href="/offers">Offers</Nav.Link>
                   <Nav.Link type="primary" onClick={showModal}>
                     Login
                   </Nav.Link>

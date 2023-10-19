@@ -47,6 +47,13 @@ const RenewPackage = ({ traineeId }) => {
 
   return (
     <div className="container">
+      <div className="image">
+        <img
+          style={{ height: "100px", width: "100px", borderRadius: "50%" }}
+          src="https://img.freepik.com/premium-photo/word-time-renew-is-written-wooden-blocks-white-desk_301012-5354.jpg"
+          alt="img"
+        />
+      </div>
       <Form style={{ maxWidth: 600 }} layout="vertical">
         <Form.Item hasFeedback label="Select Package">
           <Select

@@ -2,10 +2,6 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import img1 from "../images/deal1-68.jpg";
-import img2 from "../images/deal1-75.jpg";
-import img3 from "../images/deal1-76.jpg";
-import img4 from "../images/deal1-82.jpg";
 
 // const CustomPrevArrow = (props) => (
 //   <div {...props} className="custom-arrow prev-arrow">
@@ -33,12 +29,12 @@ const ImageSlider = ({ images }) => {
   };
 
   return (
-    <div className="image-slider-container">
+    <div>
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index}>
             <img
-              style={{ height: "100%", width: "100%" }}
+              style={{ height: "80vh", width: "100%" }}
               src={image}
               alt={`Slide ${index + 1}`}
             />

@@ -51,3 +51,20 @@ code {
 .ant-modal-title {
   background-color: hwb(35 55% 41%);
 }
+
+.footer {
+  background-color: rgb(98, 125, 143);
+}
+
+.slick-dots {
+  background-color: rgb(98, 125, 143);
+}
+
+.row {
+  margin: 2vw;
+}
+
+.col {
+  margin: 2vw;
+  background-color: aqua;
+}
