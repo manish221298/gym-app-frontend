@@ -67,6 +67,17 @@ class Trainee {
         return err.response;
       });
   }
+
+  deleteOffer(id) {
+    return axios
+      .delete(`http://localhost:4002/offerdelete/${id}`)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        return err.response;
+      });
+  }
 }
 
 export default new Trainee();

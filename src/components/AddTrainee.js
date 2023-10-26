@@ -1,12 +1,14 @@
 import { Form, Input, Button, Select, DatePicker } from "antd";
 import { useState } from "react";
 import axios from "axios";
+import Trainee from "../services/trainee";
 
 const AddTrainee = ({ setSubmitStatus, setIsModalOpen }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [date, setDate] = useState();
   const [pic, setPic] = useState(null);
+  const [discount, setDiscount] = useState();
 
   const [selectPackage, setSelectPackage] = useState(1);
 
@@ -18,6 +20,27 @@ const AddTrainee = ({ setSubmitStatus, setIsModalOpen }) => {
   const handleDate = (date, dateString) => {
     setDate(dateString);
   };
+
+  const handleOption = (e) => {
+    Trainee.getOfferList()
+      .then((res) => {
+        console.log("res from handle option", res);
+        res.map((ele) => {
+          if (ele?.selectPackage === e) {
+            setDiscount(ele?.discount);
+          }
+        });
+
+        // setOffers(res);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+
+    setSelectPackage(e);
+  };
+
+  console.log("discount", discount);
 
   const option = [
     {
@@ -76,6 +99,7 @@ const AddTrainee = ({ setSubmitStatus, setIsModalOpen }) => {
     formData.append("name", name);
     formData.append("email", email);
     formData.append("selectPackage", selectPackage);
+    formData.append("discount", discount);
     formData.append("startDate", date);
     formData.append("pic", pic);
 
@@ -123,7 +147,7 @@ const AddTrainee = ({ setSubmitStatus, setIsModalOpen }) => {
               width: 429,
             }}
             size="large"
-            onChange={(e) => setSelectPackage(e)}
+            onChange={handleOption}
             options={option}
           />
         </Form.Item>

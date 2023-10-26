@@ -5,9 +5,29 @@ import Trainee from "../services/trainee";
 const RenewPackage = ({ traineeId }) => {
   const [selectPackage, setSelectPackage] = useState(1);
   const [date, setDate] = useState();
+  const [discount, setDiscount] = useState();
 
   const handleDate = (date, dateString) => {
     setDate(dateString);
+  };
+
+  const handleOption = (e) => {
+    Trainee.getOfferList()
+      .then((res) => {
+        console.log("res from handle option", res);
+        res.map((ele) => {
+          if (ele?.selectPackage === e) {
+            setDiscount(ele?.discount);
+          }
+        });
+
+        // setOffers(res);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+
+    setSelectPackage(e);
   };
 
   const option = [
@@ -34,6 +54,7 @@ const RenewPackage = ({ traineeId }) => {
     const formData = {
       selectPackage: selectPackage,
       startDate: date,
+      discount: discount,
     };
 
     Trainee.renewPackage(traineeId, formData)
@@ -60,7 +81,7 @@ const RenewPackage = ({ traineeId }) => {
               width: 429,
             }}
             size="large"
-            onChange={(e) => setSelectPackage(e)}
+            onChange={handleOption}
             options={option}
           />
         </Form.Item>

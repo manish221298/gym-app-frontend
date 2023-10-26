@@ -8,22 +8,21 @@ import video from "../../images/Google.mp4";
 const Offers = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [offers, setOffers] = useState([]);
+  const [filteredData, setFilteredData] = useState();
 
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const togglePlay = () => {
-    setIsPlaying((prevIsPlaying) => !prevIsPlaying);
-  };
+  const [isDeleted, setIsDeleted] = useState("");
 
   useEffect(() => {
     Trainee.getOfferList()
       .then((res) => {
         setOffers(res);
+        setIsDeleted("");
       })
       .catch((err) => {
         console.log("err", err);
+        setIsDeleted("");
       });
-  }, []);
+  }, [isDeleted]);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -34,6 +33,27 @@ const Offers = () => {
   };
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+
+  const handleEdit = (id) => {
+    offers.map((ele) => {
+      if (ele?._id === id) {
+        setFilteredData(ele);
+        setIsModalOpen(true);
+      }
+    });
+  };
+
+  console.log("filtered data", filteredData);
+
+  const handleDelete = (id) => {
+    Trainee.deleteOffer(id)
+      .then((res) => {
+        setIsDeleted(res);
+      })
+      .catch((err) => {
+        console.log("delete err", err);
+      });
   };
 
   return (
@@ -101,6 +121,23 @@ const Offers = () => {
                   </p>
 
                   <p style={{ color: "green" }}>Save ₹{offer?.saveAmount}</p>
+                  <div style={{ textAlign: "end" }}>
+                    <Button
+                      onClick={() => handleEdit(offer._id)}
+                      type="primary"
+                      size="large"
+                    >
+                      Edit
+                    </Button>{" "}
+                    <Button
+                      onClick={() => handleDelete(offer._id)}
+                      type="primary"
+                      size="large"
+                      danger
+                    >
+                      Delete
+                    </Button>
+                  </div>
                 </Card>
               </Col>
             );
@@ -116,7 +153,7 @@ const Offers = () => {
         className="custom-modal"
         // width="800px"
       >
-        <SetOffer />
+        <SetOffer filteredData={filteredData} />
       </Modal>
     </div>
   );

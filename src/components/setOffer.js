@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Select, DatePicker } from "antd";
 import Trainee from "../services/trainee";
 
-const SetOffer = () => {
-  const [discount, setDiscount] = useState("");
-  const [basePrice, setBasePrice] = useState("");
-  const [selectPackage, setSelectPackage] = useState(1);
+const SetOffer = ({ filteredData }) => {
+  const [discount, setDiscount] = useState(
+    filteredData?.discount ? filteredData?.discount : ""
+  );
+  const [basePrice, setBasePrice] = useState(1000);
+  const [selectPackage, setSelectPackage] = useState(
+    filteredData?.selectPackage ? filteredData?.selectPackage : 1
+  );
 
   const option = [
     {
@@ -106,6 +110,7 @@ const SetOffer = () => {
             type="text"
             placeholder="Enter base price"
             value={basePrice}
+            disabled={true}
             onChange={(e) => setBasePrice(e.target.value)}
           />
         </Form.Item>
