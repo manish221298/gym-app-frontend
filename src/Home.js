@@ -1,5 +1,5 @@
 import React from "react";
-import ImageSlider from "./compoents/ImageSlider";
+import ImageSlider from "./components/ImageSlider";
 import img1 from "./images/deal1-68.jpg";
 import img2 from "./images/deal1-75.jpg";
 import img3 from "./images/deal1-76.jpg";

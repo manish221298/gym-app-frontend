@@ -37,9 +37,7 @@ const RenewPackage = ({ traineeId }) => {
     };
 
     Trainee.renewPackage(traineeId, formData)
-      .then((res) => {
-        console.log("renew data res", res);
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log(err);
       });

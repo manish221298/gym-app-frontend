@@ -14,9 +14,7 @@ const Register = () => {
     };
 
     Authenticate.registerUser(formData)
-      .then((res) => {
-        console.log("user registered", res);
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log("register error", err);
       });

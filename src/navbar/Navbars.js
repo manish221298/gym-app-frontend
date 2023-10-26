@@ -43,12 +43,9 @@ function Navbars() {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                  <Nav.Item>
-                    <Nav.Link href="#resume">Resume</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Link href="/">Home</Nav.Link>
                   <Nav.Link href="/traineelist">Trainee</Nav.Link>
                   <Nav.Link href="/offers">Offers</Nav.Link>
+                  <Nav.Link href="/uploadvideos">Upload Videos</Nav.Link>
                   <Nav.Link type="primary" onClick={handleLogout}>
                     Logout
                   </Nav.Link>
@@ -66,8 +63,8 @@ function Navbars() {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                  <Nav.Link href="/">Home</Nav.Link>
                   <Nav.Link href="/offers">Offers</Nav.Link>
+                  <Nav.Link href="/contactus">Contact us</Nav.Link>
                   <Nav.Link type="primary" onClick={showModal}>
                     Login
                   </Nav.Link>

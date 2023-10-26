@@ -1,0 +1,125 @@
+import React, { useState, useEffect } from "react";
+import { Container } from "react-bootstrap";
+import { Card, Col, Row, Button, Modal } from "antd";
+import SetOffer from "../setOffer";
+import Trainee from "../../services/trainee";
+import video from "../../images/Google.mp4";
+
+const Offers = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [offers, setOffers] = useState([]);
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlay = () => {
+    setIsPlaying((prevIsPlaying) => !prevIsPlaying);
+  };
+
+  useEffect(() => {
+    Trainee.getOfferList()
+      .then((res) => {
+        setOffers(res);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }, []);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <div>
+      <div className="add-trainee">
+        <Button type="primary" size="large" onClick={showModal}>
+          SET OFFER
+        </Button>
+      </div>
+      <Container>
+        {/* // for video run */}
+        {/* <Row>
+          <Col xl={8}>
+            <Card
+              title="PACKAGE"
+              bordered={false}
+              style={{
+                marginBottom: 16,
+                fontSize: "25px",
+                backgroundColor: "#ebe8e1",
+              }}
+            >
+              {" "}
+              <video
+                style={{ height: "400px", width: "400px" }}
+                controls // Adds play, pause, and volume controls
+                src={video}
+                onClick={togglePlay}
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+              >
+                Your browser does not support the video tag.
+              </video>
+            </Card>
+          </Col>
+        </Row> */}
+        <Row gutter={16}>
+          {offers?.map((offer, index) => {
+            return (
+              <Col key={index} sm={24} xs={24} md={12} lg={12} xl={8}>
+                <Card
+                  title="PACKAGE"
+                  bordered={false}
+                  style={{
+                    marginBottom: 16,
+                    fontSize: "25px",
+                    backgroundColor: "#ebe8e1",
+                  }}
+                >
+                  <p style={{ color: "#4f333a" }}>
+                    {offer.selectPackage} Months
+                  </p>
+                  <p>
+                    {" "}
+                    <span style={{ color: "green" }}>
+                      {offer.discount}% off
+                    </span>
+                    {"     "}
+                    <span
+                      style={{ textDecoration: "line-through", color: "red" }}
+                    >
+                      {offer.basePrice}
+                    </span>{" "}
+                    <b>₹{offer.ourPrice}</b>
+                  </p>
+
+                  <p style={{ color: "green" }}>Save ₹{offer?.saveAmount}</p>
+                </Card>
+              </Col>
+            );
+          })}
+        </Row>
+      </Container>
+
+      <Modal
+        title="SET OFFER"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        className="custom-modal"
+        // width="800px"
+      >
+        <SetOffer />
+      </Modal>
+    </div>
+  );
+};
+
+export default Offers;

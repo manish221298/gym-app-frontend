@@ -15,7 +15,6 @@ const Login = () => {
 
     Authenticate.loginUser(formData)
       .then((res) => {
-        console.log("user login", res);
         localStorage.setItem("authToken", res.token);
       })
       .catch((err) => {
