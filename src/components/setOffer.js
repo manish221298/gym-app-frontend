@@ -3,6 +3,7 @@ import { Form, Input, Button, Select, DatePicker } from "antd";
 import Trainee from "../services/trainee";
 
 const SetOffer = ({ filteredData }) => {
+  console.log("filter data setoffer form page", filteredData);
   const [discount, setDiscount] = useState(
     filteredData?.discount ? filteredData?.discount : ""
   );
