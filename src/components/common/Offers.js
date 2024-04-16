@@ -44,8 +44,6 @@ const Offers = () => {
     });
   };
 
-  console.log("filtered data", filteredData);
-
   const handleDelete = (id) => {
     Trainee.deleteOffer(id)
       .then((res) => {

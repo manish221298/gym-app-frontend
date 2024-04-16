@@ -16,6 +16,7 @@ const Login = () => {
     Authenticate.loginUser(formData)
       .then((res) => {
         localStorage.setItem("authToken", res.token);
+        localStorage.setItem("email", res.email);
       })
       .catch((err) => {
         console.log("login error", err);

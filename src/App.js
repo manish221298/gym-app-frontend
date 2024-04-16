@@ -8,12 +8,15 @@ import Offers from "./components/common/Offers";
 import UploadVideos from "./components/UploadVideos";
 import Home from "./Home";
 import ContactUs from "./components/common/ContactUs";
+import BackButtonAlert from "./components/BackButtonAlert";
 
 function App() {
   const isAuth = localStorage.getItem("authToken"); // Check authentication status
 
   return (
     <BrowserRouter>
+      <BackButtonAlert />
+
       <div className="App">
         <Navbar />
       </div>

@@ -102,6 +102,7 @@ const AddTrainee = ({ setSubmitStatus, setIsModalOpen }) => {
     formData.append("discount", discount);
     formData.append("startDate", date);
     formData.append("pic", pic);
+    formData.append("creatorEmail", localStorage.getItem("email"));
 
     axios
       .post(`http://localhost:4002/create`, formData, {
