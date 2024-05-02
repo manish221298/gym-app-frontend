@@ -6,7 +6,7 @@ import Login from "./Login";
 import Register from "./Register";
 import { Modal } from "antd";
 
-function Navbars() {
+function Navbars({ role }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [registerModel, setRegisterModel] = useState(false);
 
@@ -22,6 +22,7 @@ function Navbars() {
     setIsModalOpen(false);
     setRegisterModel(false);
   };
+
   const handleCancel = () => {
     setIsModalOpen(false);
     setRegisterModel(false);
@@ -36,35 +37,52 @@ function Navbars() {
     <div>
       {localStorage.getItem("authToken") ? (
         <div>
-          {" "}
           <Navbar bg="dark" expand="lg" variant="dark">
             <Container>
               <Navbar.Brand href="/">MuscleMax</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                  <Nav.Link href="/traineelist">Trainee</Nav.Link>
-                  <Nav.Link href="/offers">Offers</Nav.Link>
-                  <Nav.Link href="/uploadvideos">Upload Videos</Nav.Link>
-                  <Nav.Link type="primary" onClick={handleLogout}>
-                    Logout
-                  </Nav.Link>
-                </Nav>
-              </Navbar.Collapse>
+              {role?.role === "Admin" && (
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="me-auto">
+                    <Nav.Link href="/offers">Offers</Nav.Link>
+                    <Nav.Link href="/traineelist">Trainee</Nav.Link>
+                    <Nav.Link href="/formbuilder">Form Builder</Nav.Link>
+                    <Nav.Link href="/formlist">Form</Nav.Link>
+                    <Nav.Link href="/candidates">Candidate</Nav.Link>
+                    <Nav.Link href="/uploadvideos">Upload Videos</Nav.Link>
+                    <Nav.Link href="/contactus">Contact us</Nav.Link>
+                    <Nav.Link type="primary" onClick={handleLogout}>
+                      Logout
+                    </Nav.Link>
+                  </Nav>
+                </Navbar.Collapse>
+              )}
+              {role?.role === "User" && (
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="me-auto">
+                    <Nav.Link href="/offers">Offers</Nav.Link>
+                    <Nav.Link href="/contactus">Contact us</Nav.Link>
+                    {/* <Nav.Link href="/traineelist">Trainee</Nav.Link>
+                    <Nav.Link href="/uploadvideos">Upload Videos</Nav.Link> */}
+                    <Nav.Link type="primary" onClick={handleLogout}>
+                      Logout
+                    </Nav.Link>
+                  </Nav>
+                </Navbar.Collapse>
+              )}
             </Container>
           </Navbar>
         </div>
       ) : (
         <div>
-          {" "}
           <div>
             <Navbar bg="dark" expand="lg" variant="dark">
               <Navbar.Brand href="/">MuscleMax</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                  <Nav.Link href="/offers">Offers</Nav.Link>
-                  <Nav.Link href="/contactus">Contact us</Nav.Link>
+                  {/* <Nav.Link href="/offers">Offers</Nav.Link> */}
+                  {/* <Nav.Link href="/contactus">Contact us</Nav.Link> */}
                   <Nav.Link type="primary" onClick={showModal}>
                     Login
                   </Nav.Link>

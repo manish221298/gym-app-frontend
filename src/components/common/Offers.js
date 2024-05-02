@@ -5,7 +5,7 @@ import SetOffer from "../setOffer";
 import Trainee from "../../services/trainee";
 import video from "../../images/Google.mp4";
 
-const Offers = () => {
+const Offers = ({ role }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [offers, setOffers] = useState([]);
   const [filteredData, setFilteredData] = useState();
@@ -56,11 +56,13 @@ const Offers = () => {
 
   return (
     <div>
-      <div className="add-trainee">
-        <Button type="primary" size="large" onClick={showModal}>
-          SET OFFER
-        </Button>
-      </div>
+      {role?.role === "Admin" && (
+        <div className="add-trainee">
+          <Button type="primary" size="large" onClick={showModal}>
+            SET OFFER
+          </Button>
+        </div>
+      )}
       <Container>
         {/* // for video run */}
         {/* <Row>

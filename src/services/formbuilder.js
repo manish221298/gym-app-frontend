@@ -1,11 +1,10 @@
 import axios from "axios";
-
 const url = "http://localhost:4002";
 
-class Authenticate {
-  registerUser(formData) {
+class FormBuilder {
+  createForm(formData) {
     return axios
-      .post(`${url}/register`, formData)
+      .post(`${url}/formcreate`, formData)
       .then((res) => {
         return res.data;
       })
@@ -14,9 +13,9 @@ class Authenticate {
       });
   }
 
-  loginUser(formData) {
+  getFormList() {
     return axios
-      .post(`${url}/login`, formData)
+      .get(`${url}/formslist`)
       .then((res) => {
         return res.data;
       })
@@ -25,9 +24,9 @@ class Authenticate {
       });
   }
 
-  getUserRole(userId) {
+  formview(id) {
     return axios
-      .get(`${url}/getrole/${userId}`)
+      .get(`${url}/formslist/${id}`)
       .then((res) => {
         return res.data;
       })
@@ -37,4 +36,4 @@ class Authenticate {
   }
 }
 
-export default new Authenticate();
+export default new FormBuilder();

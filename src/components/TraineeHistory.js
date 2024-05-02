@@ -50,6 +50,11 @@ const TraineeHistory = ({ traineeId }) => {
       key: "email",
     },
     {
+      title: "Created By",
+      dataIndex: ["userId", "email"],
+      key: "createdBy",
+    },
+    {
       title: "Selected Package",
       dataIndex: "selectPackage",
       key: "selectPackage",

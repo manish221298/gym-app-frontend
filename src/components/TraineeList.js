@@ -4,11 +4,12 @@ import Trainee from "../services/trainee";
 import AddTrainee from "./AddTrainee";
 import TraineeHistory from "./TraineeHistory";
 import RenewPackage from "./RenewPackage";
+import toast, { Toaster } from "react-hot-toast";
 
-const TraineeList = () => {
+const TraineeList = ({ role }) => {
   const [data, setData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState();
+  const [submitStatus, setSubmitStatus] = useState("");
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [isRenewFormOpen, setIsRenewFormOpen] = useState(false);
   const [traineeId, setTraineeId] = useState();
@@ -16,8 +17,12 @@ const TraineeList = () => {
   useEffect(() => {
     Trainee.getTraineeList()
       .then((res) => {
-        setData(res);
-        setSubmitStatus("");
+        if (res?.status === 200) {
+          setData(res?.data);
+          setSubmitStatus("");
+        } else {
+          toast.error(res.data.message);
+        }
       })
       .catch((err) => {
         console.log("err data", err);
@@ -84,6 +89,11 @@ const TraineeList = () => {
       key: "email",
     },
     {
+      title: "Created By",
+      dataIndex: ["userId", "email"],
+      key: "userId.email",
+    },
+    {
       title: "Selected Package",
       dataIndex: "selectPackage",
       key: "selectPackage",
@@ -120,10 +130,10 @@ const TraineeList = () => {
       key: "_id",
       render: (_id) => (
         <span>
-          <Button className="edit-button" type="primary">
+          {/* <Button className="edit-button" type="primary">
             Edit
-          </Button>
-          ,
+          </Button> */}
+          {/* , */}
           <Button
             className="renew-button"
             type="primary"
@@ -139,10 +149,10 @@ const TraineeList = () => {
           >
             View
           </Button>
-          ,
-          <Button type="primary" danger>
+          {/* , */}
+          {/* <Button type="primary" danger>
             Delete
-          </Button>
+          </Button> */}
         </span>
       ),
     },
@@ -150,12 +160,15 @@ const TraineeList = () => {
 
   return (
     <div>
-      <div className="add-trainee">
-        <Button type="primary" size="large" onClick={showModal}>
-          ADD TRAINEE
-        </Button>
-      </div>
+      {role?.role === "Admin" && (
+        <div className="add-trainee">
+          <Button type="primary" size="large" onClick={showModal}>
+            ADD TRAINEE
+          </Button>
+        </div>
+      )}
       <Table dataSource={data} columns={columns} />
+      <Toaster />
       <Modal
         title="ADD TRAINEE"
         open={isModalOpen}
